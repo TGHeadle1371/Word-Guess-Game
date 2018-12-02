@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>90's Word Guess Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="assets/javascript/game.js"></script>
+</head>
+
+<!-- // Use KEY EVENTS to LISTEN for the LETTERS that your players will type
+ Display: Press any key to get started!
+ Wins:(# of times user guessed the word correctly)
+ display _ _ _ _ _ _ _ for words to guess
+ As the user guesses the correct letter, fill the blank _ _ t _ _ t
+ Number of guesses remaining: (# of guesses remaining for the user)
+ Letters already guessed (Displayed like A B C D)
+ After user wins/loses the game, start another word and make user play
+ BONUS: Play a sound or song when the user guesses correctly
+ Write stylish CSS rules to make design that fits the theme
+ HARD MODE: organize the game code as an object, except for the key events to get the letter guessed.
+ Save the whole game and its properties in an object
+ Save any game functions as methods, call them underneath your object declaration using event listeners
+ Dont forget to place your global variables and functions above your object
+ Dont forget (Global variables, Objects, Then Calls)
+ Talk to TA if stuff!! -->
+
+<body>
+    <div class="container-fluid text-center content-center text-white">
+        <h1>Hello, welcome to my game!</h1>
+    </div>
+    <br>
+    <div class="container">
+        <div class="jumbotron" style="margin-top: 300px; align-content: center; height: 300px;">
+            <div class="row">
+                <div class="col-6 float-left text-center">
+                    <p class="lead" id="pressKeyTryAgain" style="padding: 5px;">Press any key to get started!</p>
+                    <img src="" alt="">
+                </div>
+                <div class="col-6 float-left text-center">
+                    <div class="list-group float-left text-center">
+                        <p class="lead">Wins</p>
+                        <p id="wins"></p>
+                        <p class="lead">Current Word</p>
+                        <p id="currentWord"> </p>
+                        <p class="lead">Number of guesses remaining</p>
+                        <p id="numberGuesses"></p>
+                        <p class="lead">Letters already guessed</p>
+                        <p id="letterGuesses"></p>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

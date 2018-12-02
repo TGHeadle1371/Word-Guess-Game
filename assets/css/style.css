@@ -1,0 +1,18 @@
+body {
+    background-image: url('https://d3u03kk87rjfaq.cloudfront.net/wp-content/uploads/2016/08/juliatim90s.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+} 
+
+.container {
+    position: relative;
+    margin: auto;
+    width: 50%;
+
+}
+.jumbotron {
+    opacity: 0.8;
+}
+.list-group {
+    background: none;
+}
