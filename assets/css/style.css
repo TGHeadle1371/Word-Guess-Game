@@ -16,3 +16,6 @@ body {
 .list-group {
     background: none;
 }
+#currentWord {
+    letter-spacing: 10px;
+}

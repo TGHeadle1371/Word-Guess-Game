@@ -1,6 +1,3 @@
-
-
-
 // Use KEY EVENTS to LISTEN for the LETTERS that your players will type
 // Display: Press any key to get started!
 // Wins:(# of times user guessed the word correctly)
@@ -21,24 +18,24 @@
 
 //GLOBAL VARIABLES
 
-var selectableWords = [ //Bands word list
-        "nas", 
-        "warren g",
-        "wutang clan",
-        "ol dirty bastard",
-        "dr dre",
-        "jay z",
-        "beastie boys",
-        "jurrasic 5",
-        "snoop dogg",
-        "public enemy",
-        "naughty by nature",
-        "digable planets",
-        "house of pain",
-        "ice cube",
-        "a tribe called quest",
-        "tupac",
-        "The notorious big",
+var bandNameWords = [ //Bands word list
+    "nas",
+    "warren g",
+    "wutang clan",
+    "ol dirty bastard",
+    "dr dre",
+    "jay z",
+    "beastie boys",
+    "jurrasic 5",
+    "snoop dogg",
+    "public enemy",
+    "naughty by nature",
+    "digable planets",
+    "house of pain",
+    "ice cube",
+    "a tribe called quest",
+    "tupac",
+    "The notorious big",
 ];
 
 const maxTries = 10; // Maximum tries
@@ -50,10 +47,122 @@ var letterGuesses = []; // Letters already guessed
 var startGame = false; // Tells if game actually started
 var finishGame = false; // 'Press any key to try again'
 
+// //Game sounds
+// var keySound = new Audio(source)
+// var winSound = new Audio()
+// var backgroundSound = new Audio
 
 //FUNCTIONS
 
 
+// Start a new game
 
 
+function startNewGame() {
+    numberGuesses = maxTries;
+    startGame = false;
+
+
+    // Math floor to round random number down to whole number
+
+    currentWord = Math.floor(Math.random() * (bandNameWords.length));
+
+    // Clear out arrays
+    letterGuesses = [];
+    guessingWord = [];
+
+
+    // Build the guessing word and clear it out
+    for (var i = 0; i < bandNameWords[currentWord].length; i++) {
+        guessingWord.push("_");
+    }
+
+    // Hide game over and win images/text
+
+    document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
+    document.getElementById("gameover-image").style.cssText = "display: none";
+    document.getElementById("youwin-image").style.cssText = "display: none";
+
+    // Update display
+    resetDisplay();
+};
+
+
+//Update display on HTML page
+function resetDisplay() {
+    document.getElementById("wins").innerText = wins;
+    document.getElementById("currentWord").innerText = "";
+    for (var i = 0; i < guessingWord.length; i++) {
+        document.getElementById("currentWord").innerText += guessingWord[i];
+    }
+    document.getElementById("numberGuesses").innerText = numberGuesses;
+    document.getElementById("letterGuesses").innerText = letterGuesses;
+    if (numberGuesses <= 0) {
+        document.getElementById("gameover-image").style.cssText = "display: block";
+        document.getElementById("pressKeyTryAgain").style.cssText = "display:block";
+        finishGame = true;
+    }
+};
+//onkeydown event listener; if has finished is true, start a new game
+document.onkeydown = function (event) {
+    // If finished, dump one keystroke and reset
+    if (finishGame) {
+        startNewGame();
+        finishGame = false;
+    } else {
+        // Check to make sure a (65) - z (90) was pressed.
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
+            makeGuess(event.key.toLowerCase());
+        }
+    }
+};
+// Check number of guesses remaining
+function makeGuess(letter) {
+    if (numberGuesses > 0) {
+        if (!startGame) {
+            startGame = true;
+        }
+
+        // Make sure we didn't use this letter yet
+        if (letterGuesses.indexOf(letter) === -1) {
+            letterGuesses.push(letter);
+            evaluateGuess(letter);
+        }
+    }
+
+    resetDisplay();
+    checkWin();
+};
+
+// This function takes a letter and finds all instances of 
+// appearance in the string and replaces them in the guess word.
+function evaluateGuess(letter) {
+    // Array to store positions of letters in string
+    var positions = [];
+    // Loop through word finding all instances of guessed letter, store the indicies in an array.
+    for (var i = 0; i < bandNameWords[currentWord].length; i++) {
+        if (bandNameWords[currentWord][i] === letter) {
+            positions.push(i);
+        }
+    }
+
+    // If there are none left, remove a guess
+    if (positions.length <= 0) {
+        numberGuesses--;
+    } else {
+        // Loop through all the indicies and replace the '_' with a letter.
+        for (var i = 0; i < positions.length; i++) {
+            letterGuesses[positions[i]] = letter;
+        }
+    }
+};
+//Checks if you won or lost the game, then displays correlating image
+function checkWin() {
+    if (guessingWord.indexOf("_") === -1) {
+        document.getElementById("youwin-image").style.cssText = "display: block";
+        document.getElementById("pressKeyTryAgain").style.cssText = "display: block";
+        wins++;
+        finishGame = true;
+    }
+};
 //PROCESSES/EXECUTIONS
