@@ -18,7 +18,7 @@
 
 //GLOBAL VARIABLES
 
-var bandNameWords = [ //Bands word list
+var bandNames = [ //Bands word list
     "nas",
     "warren g",
     "wutang clan",
@@ -26,7 +26,7 @@ var bandNameWords = [ //Bands word list
     "dr dre",
     "jay z",
     "beastie boys",
-    "jurrasic 5",
+    "jurrasic five",
     "snoop dogg",
     "public enemy",
     "naughty by nature",
@@ -35,134 +35,74 @@ var bandNameWords = [ //Bands word list
     "ice cube",
     "a tribe called quest",
     "tupac",
-    "The notorious big",
+    "The notorious big"
 ];
 
-const maxTries = 10; // Maximum tries
-var guessingWord = []; // Current word to Guess
-var wins = 0; // Number of wins player has
-var currentWord; // Current word in the array
-var numberGuesses = 0; // Remaining number of guesses
-var letterGuesses = []; // Letters already guessed
-var startGame = false; // Tells if game actually started
-var finishGame = false; // 'Press any key to try again'
-
-// //Game sounds
-// var keySound = new Audio(source)
-// var winSound = new Audio()
-// var backgroundSound = new Audio
-
-//FUNCTIONS
-
-
-// Start a new game
+// Pick a random word from bandNames
+// While the word has not been guessed {
+//     Show the player their current progress by filling in underscores
+//     Get a guess from the player
+//     If the player wants to quit the game {
+//         Quit the game
+//     }
+//     Else If the guess is not a single letter {
+//         Tell the player to pick a single letter
+//     } Else {
+//         If the guess is in the word {
+//             Update the player 's progress with the guess
+//         }
+//     }
+// }
+// Congratulate the player on guessing the word
 
 
-function startNewGame() {
-    numberGuesses = maxTries;
-    startGame = false;
-
-
-    // Math floor to round random number down to whole number
-
-    currentWord = Math.floor(Math.random() * (bandNameWords.length));
-
-    // Clear out arrays
-    letterGuesses = [];
-    guessingWord = [];
-
-
-    // Build the guessing word and clear it out
-    for (var i = 0; i < bandNameWords[currentWord].length; i++) {
-        guessingWord.push("_");
-    }
-
-    // Hide game over and win images/text
-
-    document.getElementById("pressKeyTryAgain").style.cssText = "display: none";
-    document.getElementById("gameover-image").style.cssText = "display: none";
-    document.getElementById("youwin-image").style.cssText = "display: none";
-
-    // Update display
-    resetDisplay();
-};
-
-
-//Update display on HTML page
-function resetDisplay() {
-    document.getElementById("wins").innerText = wins;
-    document.getElementById("currentWord").innerText = "";
-    for (var i = 0; i < guessingWord.length; i++) {
-        document.getElementById("currentWord").innerText += guessingWord[i];
-    }
-    document.getElementById("numberGuesses").innerText = numberGuesses;
-    document.getElementById("letterGuesses").innerText = letterGuesses;
-    if (numberGuesses <= 0) {
-        document.getElementById("gameover-image").style.cssText = "display: block";
-        document.getElementById("pressKeyTryAgain").style.cssText = "display:block";
-        finishGame = true;
-    }
-};
-//onkeydown event listener; if has finished is true, start a new game
-document.onkeydown = function (event) {
-    // If finished, dump one keystroke and reset
-    if (finishGame) {
-        startNewGame();
-        finishGame = false;
-    } else {
-        // Check to make sure a (65) - z (90) was pressed.
-        if (event.keyCode >= 65 && event.keyCode <= 90) {
-            makeGuess(event.key.toLowerCase());
-        }
-    }
-};
-// Check number of guesses remaining
-function makeGuess(letter) {
-    if (numberGuesses > 0) {
-        if (!startGame) {
-            startGame = true;
-        }
-
-        // Make sure we didn't use this letter yet
-        if (letterGuesses.indexOf(letter) === -1) {
-            letterGuesses.push(letter);
-            evaluateGuess(letter);
-        }
-    }
-
-    resetDisplay();
-    checkWin();
-};
-
-// This function takes a letter and finds all instances of 
-// appearance in the string and replaces them in the guess word.
-function evaluateGuess(letter) {
-    // Array to store positions of letters in string
-    var positions = [];
-    // Loop through word finding all instances of guessed letter, store the indicies in an array.
-    for (var i = 0; i < bandNameWords[currentWord].length; i++) {
-        if (bandNameWords[currentWord][i] === letter) {
-            positions.push(i);
-        }
-    }
-
-    // If there are none left, remove a guess
-    if (positions.length <= 0) {
-        numberGuesses--;
-    } else {
-        // Loop through all the indicies and replace the '_' with a letter.
-        for (var i = 0; i < positions.length; i++) {
-            letterGuesses[positions[i]] = letter;
-        }
-    }
-};
-//Checks if you won or lost the game, then displays correlating image
-function checkWin() {
-    if (guessingWord.indexOf("_") === -1) {
-        document.getElementById("youwin-image").style.cssText = "display: block";
-        document.getElementById("pressKeyTryAgain").style.cssText = "display: block";
-        wins++;
-        finishGame = true;
-    }
-};
-//PROCESSES/EXECUTIONS
+ var game = {
+     guessed: [],
+     left: 10,
+     start: function () {
+         this.complete = false;
+         this.word = bandNames[Math.floor(Math.random() * bandNames.length)];
+         this.$wins = document.getElementById('wins');
+         this.$losses = document.getElementById('losses');
+         this.$remaining = document.getElementById('remaining');
+         this.$lettersGuessed = document.getElementById('lettersGuessed');
+         this.$right.innerHTML = '_'.repeat(this.word.length);
+     },
+     guess: function (letter) {
+         if (this.left > 0 && this.complete != true) {
+             if (this.word.indexOf(letter) > -1 || this.guessed.indexOf(letter) > -1) {
+                 this.wins(letter);
+             } else {
+                 this.losses(letter);
+             }
+         }
+     },
+     wins: function (letter) {
+         for (var i = 0; i < this.word.length; i++) {
+             if (this.word[i] == letter) {
+                 var word = this.$wins.innerHTML.split('');
+                 word[i] = letter;
+                 this.$wins.innerHTML = word.join('');
+             }
+         }
+         if (this.$right.innerHTML.indexOf('_') < 0) {
+             alert('you win!');
+             this.complete = true;
+         }
+     },
+     losses: function (letter) {
+         this.guessed.push(letter);
+         this.$losses.innerHTML += ' ' + letter;
+         this.left--;
+         this.$remaining.innerHTML = this.left;
+         if (this.left < 1) {
+             alert('you lose! ' + this.word);
+             this.complete = true;
+         }
+     }
+ };
+ game.start();
+ document.onkeyup = function (event) {
+     var letter = String.fromCharCode(event.keyCode).toLowerCase();
+     game.guess(letter);
+ };
