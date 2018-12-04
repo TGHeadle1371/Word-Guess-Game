@@ -19,3 +19,6 @@ body {
 #currentWord {
     letter-spacing: 10px;
 }
+#right {
+    letter-spacing: 3px;
+}
