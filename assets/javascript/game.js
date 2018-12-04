@@ -18,9 +18,9 @@
 
 //GLOBAL VARIABLES
 
-var bandNames = [ //Bands word list
+var wordList = [ //Bands word list
     "nas",
-    "warren g",
+    "warreng",
     "wutang clan",
     "ol dirty bastard",
     "dr dre",
@@ -37,72 +37,131 @@ var bandNames = [ //Bands word list
     "tupac",
     "The notorious big"
 ];
+var chosenWord = ""; //when select word at random from bands
 
-// Pick a random word from bandNames
-// While the word has not been guessed {
-//     Show the player their current progress by filling in underscores
-//     Get a guess from the player
-//     If the player wants to quit the game {
-//         Quit the game
-//     }
-//     Else If the guess is not a single letter {
-//         Tell the player to pick a single letter
-//     } Else {
-//         If the guess is in the word {
-//             Update the player 's progress with the guess
-//         }
-//     }
-// }
-// Congratulate the player on guessing the word
+var lettersInChosenWord = []; //word that is played on is going to break it up into letters
+
+var numBlanks = 0; //will hold the number of letters in the word
+
+var blanksAndSuccesses = []; //will store the right or wrong letters. stores underscores or letters
+
+var wrongGuesses = []; //stores the wrong letter guesses
+
+var winCounter = 0; //Wins starts zeroed out
+var lossCounter = 1; // Start with one due to mathRandom
+var numGuesses = 10; //only have 10 guesses
 
 
-var game = {
-    guessed: [],
-    left: 10,
-    start: function () {
-        this.complete = false;
-        this.word = bandNames[Math.floor(Math.random() * bandNames.length)];
-        this.$right = document.getElementById('right');
-        this.$numberRight = document.getElementById('numberRight');
-        this.$wrong = document.getElementById('wrong');
-        this.$remain = document.getElementById('remain');
-        this.right.innerHTML = '_'.repeat(this.word.length);
-    },
-    guess: function (letter) {
-        if (this.left > 0 && this.complete != true) {
-            if (this.word.indexOf(letter) > -1 || this.guessed.indexOf(letter) > -1) {
-                this.right(letter);
-            } else {
-                this.wrong(letter);
-            }
-        }
-    },
-    right: function (letter) {
-        for (var i = 0; i < this.word.length; i++) {
-            if (this.word[i] == letter) {
-                var word = this.right.innerHTML.split('');
-                word[i] = letter;
-                this.right.innerHTML = word.join('');
-            }
-        }
-        if (this.right.innerHTML.indexOf('_') < 0) {
-            alert('you win!');
-            this.complete = true;
-        }
-    },
-    wrong: function (letter) {
-        this.guessed.push(letter);
-        this.wrong.innerHTML += ' ' + letter;
-        this.left--;
-        remain.innerHTML = this.left;
-        if (this.left < 1) {
-            alert('you lose! ' + this.word);
-            this.complete = true;
+// Add audio files
+
+
+/*
+     1. Select random word from bands
+     2. Break up random word into letters and replace them with underscores
+     3. Add the underscores to the HTML
+     4. Numguesses always equals 10, and blankandsuccess and wrongguesses are empy arrays
+*/
+
+$(document).ready(function () {
+   alert('Press any key to begin! Spaces count as characters too!');
+function startGame() {
+    numGuesses = 10;
+    blanksAndSuccesses = []; //makes empty at start
+    wrongGuesses = []; //makes empty at start
+
+    chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
+    lettersInChosenWord = chosenWord.split("");
+    numBlanks = lettersInChosenWord.length;
+    // console.log(chosenWord);
+    // console.log(numBlanks);
+
+    for (var i = 0; i < numBlanks; i++) {
+        blanksAndSuccesses.push("_");
+    }
+    console.log(blanksAndSuccesses);
+    document.getElementById('word-blank').innerHTML = blanksAndSuccesses.join(" ");
+    document.getElementById('guesses-left').innerHTML = numGuesses;
+    document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" ");
+
+};
+
+function checkLetters(letter) { //function that gets input from the user
+
+    var letterInWord = false;
+    //1. Compare if the letter the user picks matches any of the letters in the random band word
+    //2. If so, true, add letter to underscores, if not, do something else.
+    for (var i = 0; i < numBlanks; i++) {
+        if (chosenWord[i] === letter) {
+            letterInWord = true;
+
         }
     }
+    //will only run if above for loop is true
+    if (letterInWord) {
+        for (i = 0; i < numBlanks; i++) {
+            if (chosenWord[i] === letter) {
+                blanksAndSuccesses[i] = letter;
+            }
+            console.log(blanksAndSuccesses); //Console.log test blanksAndSuccesses
+        }
+        //3. If the user letter guess is wrong decrease the numGuesses variables by one
+    } else { 
+        numGuesses--;
+        wrongGuesses.push(letter);
+    }
+    console.log("Wrong Guesses Chosen", wrongGuesses); //Console.log test wrongGuesses
 };
-game.start();
-document.onkeyup = function (event) {
-    var letter = String.fromCharCode(event.keyCode).toLowerCase();
-    game.guess(letter);
+/* to check if a letter is already in the wrong guesses array.
+ set up an if/else conditional that will run a for loop that will iterate over all the letters 
+ and then use the if/else to check if it already exists. 
+ */
+
+function roundComplete() {
+    /*
+    1. Update the HTML with the letters that are in the word
+    2. Update the HTML with guesses we have left
+    3. Update the HTML to show the wrong guesses
+    4. Determine whether the user has won the game or not
+    */
+    document.getElementById('word-blank').innerHTML = blanksAndSuccesses.join(" ");
+    document.getElementById('guesses-left').innerHTML = numGuesses;
+    document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" ");
+
+
+
+    // console.log(lettersInChosenWord);
+    // console.log(blanksAndSuccesses);
+    if (lettersInChosenWord.join(" ") === blanksAndSuccesses.join(" ")) {
+        winCounter++;
+        alert("You win! The answer was " + chosenWord);
+        document.getElementById('win-counter').innerHTML = winCounter;
+        document.getElementById('audiotag1').play();
+        startGame(); // If the letter chosen matches the underscored random letter, increment winCounter, alert the user, and start a new game
+        
+    } else if (numGuesses === 0) {
+        document.getElementById('loss-counter').innerHTML = lossCounter++;
+        document.getElementById('wrong-guesses').innerHTML = " ";
+        alert("You lost! The answer was " + chosenWord);
+        document.getElementById('audiotag2').play();
+        startGame(); // If the letter chosen does not match the underscored random letter, increment lossCounter, alert the user, and start a new game
+
+    }
+
+
+
+
 };
+startGame();
+
+document.onkeyup = function () {
+    /*
+    1. Take in the letter that user types in
+    2. Pass it through the CheckLetter function
+    */
+    var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+    console.log("The Letter Guessed Is", letterGuessed);
+    checkLetters(letterGuessed);
+    roundComplete();
+
+};
+});

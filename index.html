@@ -6,55 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>90's Word Guess Game</title>
+    <!-- Add Favicon -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <script src="assets/javascript/game.js" type="text/javascript"></script>
 </head>
 
-<!-- // Use KEY EVENTS to LISTEN for the LETTERS that your players will type
- Display: Press any key to get started!
- Wins:(# of times user guessed the word correctly)
- display _ _ _ _ _ _ _ for words to guess
- As the user guesses the correct letter, fill the blank _ _ t _ _ t
- Number of guesses remaining: (# of guesses remaining for the user)
- Letters already guessed (Displayed like A B C D)
- After user wins/loses the game, start another word and make user play
- BONUS: Play a sound or song when the user guesses correctly
- Write stylish CSS rules to make design that fits the theme
- HARD MODE: organize the game code as an object, except for the key events to get the letter guessed.
- Save the whole game and its properties in an object
- Save any game functions as methods, call them underneath your object declaration using event listeners
- Dont forget to place your global variables and functions above your object
- Dont forget (Global variables, Objects, Then Calls)
- Talk to TA if stuff!! -->
-
 <body>
-    <div class="container-fluid text-center content-center text-white">
-        <h1>Hello, welcome to my game!</h1>
-    </div>
-    <br>
-    <div class="container">
-        <div class="jumbotron" style="margin-top: 300px; align-content: center; height: 500px;">
-            <div class="row">
-                <div class="col-6 float-left text-center">
-                    <h2>90's Theme Hangman!</h2>
-                    <p id="right"></p>
-                    <p>
-                    <p id="numberRight"></p>
-                    <span id="remain">10</span> guesses remaining
-                    </p>
-                    <p> Letters Used </p>
-                    <p id="wrong"></p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="container container-fluid">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
+<div class="jumbotron text-center" id="jumbo">
+<h1 class="header text-center text-black opacity-1" style="padding-bottom:20px;">Hangman</h1>
+<p>Guesses Left: <span id="guesses-left"></span></p>
+<p>Wrong Guesses: <span id="wrong-guesses"></span></p>
+<p>Wins: <span id="win-counter"></span></p>
+<p>Losses: <span id="loss-counter"></span></p>
+
+<h3 id="word-blank"></h3>
+
+<audio id="audiotag1" src="assets/audio/House of Pain - Jump Around(playvk.com).mp3" preload="auto"></audio>
+<audio id="audiotag2" src="assets/audio/Warren G - Regulate (feat. Nate Dogg)(playvk.com).mp3" preload="auto"></audio>
+</script>
+    </div>
+    </div>
+    <!-- Load JS -->
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 
 </html>
