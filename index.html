@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>90's Word Guess Game</title>
     <!-- Add Favicon -->
@@ -15,36 +15,42 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script> -->
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-    <!-- Font Awesome icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-    <div class="container container-fluid">
 
-<div class="jumbotron text-center" id="jumbo">
-<h1 class="header text-center text-black opacity-1" style="padding-bottom:20px;">Hangman</h1>
-<p>Guesses Left: <span id="guesses-left"></span></p>
-<p>Wrong Guesses: <span id="wrong-guesses"></span></p>
-<p>Wins: <span id="win-counter"></span></p>
-<p>Losses: <span id="loss-counter"></span></p>
 
-<h3 id="word-blank"></h3>
+    <div class="container-fluid vertical-center">
+        <div class="jumbotron text-center " id="jumbo">
+            <h1 class="header text-center text-black opacity-1" style="padding-bottom:20px;">Hangman</h1>
+            <p>Guesses Left: <span id="guesses-left"></span></p>
+            <p>Wrong Guesses: <span id="wrong-guesses"></span></p>
+            <p>Wins: <span id="win-counter"></span></p>
+            <p>Losses: <span id="loss-counter"></span></p>
 
-<audio id="audiotag1" src="assets/audio/House of Pain - Jump Around(playvk.com).mp3" preload="auto"></audio>
-<audio id="audiotag2" src="assets/audio/Warren G - Regulate (feat. Nate Dogg)(playvk.com).mp3" preload="auto"></audio>
-</script>
-    </div>
+            <h3 id="word-blank"></h3>
+
+            <audio id="audiotag1" src="assets/audio/House of Pain - Jump Around(playvk.com).mp3" preload="auto"></audio>
+            <audio id="audiotag2" src="assets/audio/Warren G - Regulate (feat. Nate Dogg)(playvk.com).mp3" preload="auto"></audio>
+            </script>
+        </div>
     </div>
     <!-- Load JS -->
     <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </html>
