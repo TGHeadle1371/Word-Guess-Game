@@ -154,7 +154,7 @@ $(document).ready(function () {
     };
     startGame();
 
-    document.onkeydown = function () {
+    document.onkeyup = function () {
         /*
         1. Take in the letter that user types in
         2. Pass it through the CheckLetter function
