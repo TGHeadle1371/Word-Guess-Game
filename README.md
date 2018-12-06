@@ -52,6 +52,6 @@ Players have 10 total guesses to try to get the word.
 
 
 
- ![Image of Webpage](/Word-Guess-Game/assets/images/screenshot.png?raw=true "Game Page")
+ ![Image of Webpage](/assets/images/screenshot.png?raw=true "Game Page")
 
       
