@@ -83,7 +83,7 @@ $(document).ready(function () {
         document.getElementById('word-blank').innerHTML = blanksAndSuccesses.join(" "); //Target innerHTML and join the spaces
         document.getElementById('guesses-left').innerHTML = numGuesses; //Added the numGuesses to guesses left paragraph
         document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" "); //Add wrong guesses to wrong-guesses paragraph
-
+ // USE jQuery Selector $()
     };
 
     function checkLetters(letter) { //function that gets input from the user / applied letter from child function
