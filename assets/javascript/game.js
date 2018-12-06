@@ -159,9 +159,10 @@ $(document).ready(function () {
         1. Take in the letter that user types in
         2. Pass it through the CheckLetter function
         */
-        document.getElementById('audiotag3').play();
+        
         var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
         console.log("The Letter Guessed Is", letterGuessed);
+        document.getElementById('audiotag3').play();
         checkLetters(letterGuessed);
         roundComplete();
 
