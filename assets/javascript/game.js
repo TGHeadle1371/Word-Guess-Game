@@ -63,105 +63,107 @@ var numGuesses = 10; //only have 10 guesses
 */
 
 $(document).ready(function () {
-   alert('Press any key to begin! Spaces count as characters too!');
-function startGame() {
-    numGuesses = 10;
-    blanksAndSuccesses = []; //makes empty at start
-    wrongGuesses = []; //makes empty at start
+    alert('Press any key to begin! REMEMBER: Spaces count as characters too!');
 
-    chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
-    lettersInChosenWord = chosenWord.split("");
-    numBlanks = lettersInChosenWord.length;
-    // console.log(chosenWord);
-    // console.log(numBlanks);
+    function startGame() {
+        numGuesses = 10; // Number of guesses allowed set to 10
+        blanksAndSuccesses = []; //makes empty at start
+        wrongGuesses = []; //makes empty at start
 
-    for (var i = 0; i < numBlanks; i++) {
-        blanksAndSuccesses.push("_");
-    }
-    console.log(blanksAndSuccesses);
-    document.getElementById('word-blank').innerHTML = blanksAndSuccesses.join(" ");
-    document.getElementById('guesses-left').innerHTML = numGuesses;
-    document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" ");
+        chosenWord = wordList[Math.floor(Math.random() * wordList.length)]; //Choose random word from the list
+        lettersInChosenWord = chosenWord.split(""); //Split up the chosen word for the individual letters to go in the blanks
+        numBlanks = lettersInChosenWord.length;
+        // console.log(chosenWord);
+        // console.log(numBlanks);
 
-};
-
-function checkLetters(letter) { //function that gets input from the user / applied letter from child function
-
-    var letterInWord = false;
-    //1. Compare if the letter the user picks matches any of the letters in the random band word
-    //2. If so, true, add letter to underscores, if not, do something else.
-    for (var i = 0; i < numBlanks; i++) {
-        if (chosenWord[i] === letter) {
-            letterInWord = true;
-
+        for (var i = 0; i < numBlanks; i++) { //Loop for the blanks to be filled with _  followed with space " "
+            blanksAndSuccesses.push("_");
         }
-    }
-    //will only run if above for loop is true
-    if (letterInWord) {
-        for (i = 0; i < numBlanks; i++) {
+        console.log(blanksAndSuccesses);
+        document.getElementById('word-blank').innerHTML = blanksAndSuccesses.join(" "); //Target innerHTML and join the spaces
+        document.getElementById('guesses-left').innerHTML = numGuesses; //Added the numGuesses to guesses left paragraph
+        document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" "); //Add wrong guesses to wrong-guesses paragraph
+
+    };
+
+    function checkLetters(letter) { //function that gets input from the user / applied letter from child function
+
+        var letterInWord = false;
+        //1. Compare if the letter the user picks matches any of the letters in the random band word
+        //2. If so, true, add letter to underscores, if not, do something else.
+        for (var i = 0; i < numBlanks; i++) {
             if (chosenWord[i] === letter) {
-                blanksAndSuccesses[i] = letter;
+                letterInWord = true;
+
             }
-            console.log(blanksAndSuccesses); //Console.log test blanksAndSuccesses
         }
-        //3. If the user letter guess is wrong decrease the numGuesses variables by one
-    } else { 
-        numGuesses--;
-        wrongGuesses.push(letter);
-    }
-    console.log("Wrong Guesses Chosen", wrongGuesses); //Console.log test wrongGuesses
-};
-/* to check if a letter is already in the wrong guesses array.
- set up an if/else conditional that will run a for loop that will iterate over all the letters 
- and then use the if/else to check if it already exists. 
- */
+        //will only run if above for loop is true
+        if (letterInWord) {
+            for (i = 0; i < numBlanks; i++) {
+                if (chosenWord[i] === letter) {
+                    blanksAndSuccesses[i] = letter;
+                }
+                console.log(blanksAndSuccesses); //Console.log test blanksAndSuccesses
+            }
+            //3. If the user letter guess is wrong decrease the numGuesses variables by one
+        } else {
+            numGuesses--;
+            wrongGuesses.push(letter);
+        }
+        console.log("Wrong Guesses Chosen", wrongGuesses); //Console.log test wrongGuesses
+    };
+    /* to check if a letter is already in the wrong guesses array.
+     set up an if/else conditional that will run a for loop that will iterate over all the letters 
+     and then use the if/else to check if it already exists. 
+     */
 
-function roundComplete() {
-    /*
-    1. Update the HTML with the letters that are in the word
-    2. Update the HTML with guesses we have left
-    3. Update the HTML to show the wrong guesses
-    4. Determine whether the user has won the game or not
-    */
-    document.getElementById('word-blank').innerHTML = blanksAndSuccesses.join(" ");
-    document.getElementById('guesses-left').innerHTML = numGuesses;
-    document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" ");
-
-
-
-    // console.log(lettersInChosenWord);
-    // console.log(blanksAndSuccesses);
-    if (lettersInChosenWord.join(" ") === blanksAndSuccesses.join(" ")) {
-        winCounter++;
-        alert("You win! The answer was " + chosenWord);
-        document.getElementById('win-counter').innerHTML = winCounter;
-        document.getElementById('audiotag1').play();
-        startGame(); // If the letter chosen matches the underscored random letter, increment winCounter, alert the user, and start a new game
-        
-    } else if (numGuesses === 0) {
-        document.getElementById('loss-counter').innerHTML = lossCounter++;
-        document.getElementById('wrong-guesses').innerHTML = " ";
-        alert("You lost! The answer was " + chosenWord);
-        document.getElementById('audiotag2').play();
-        startGame(); // If the letter chosen does not match the underscored random letter, increment lossCounter, alert the user, and start a new game
-
-    }
+    function roundComplete() {
+        /*
+        1. Update the HTML with the letters that are in the word
+        2. Update the HTML with guesses we have left
+        3. Update the HTML to show the wrong guesses
+        4. Determine whether the user has won the game or not
+        */
+        document.getElementById('word-blank').innerHTML = blanksAndSuccesses.join(" ");
+        document.getElementById('guesses-left').innerHTML = numGuesses;
+        document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" ");
 
 
 
+        // console.log(lettersInChosenWord);
+        // console.log(blanksAndSuccesses);
+        if (lettersInChosenWord.join(" ") === blanksAndSuccesses.join(" ")) {
+            winCounter++;
+            alert("You win! The answer was " + chosenWord);
+            document.getElementById('win-counter').innerHTML = winCounter;
+            document.getElementById('audiotag1').play();
+            startGame(); // If the letters chosen joined match the underscored random letters joined, increment winCounter, alert the user, play audio, and start a new game
 
-};
-startGame();
+        } else if (numGuesses === 0) {
+            document.getElementById('loss-counter').innerHTML = lossCounter++;
+            document.getElementById('wrong-guesses').innerHTML = " ";
+            alert("You lost! The answer was " + chosenWord);
+            document.getElementById('audiotag2').play();
+            startGame(); // If the letters chosen do not match the underscored random letters, increment lossCounter, alert the user, play audio, and start a new game
 
-document.onkeyup = function () {
-    /*
-    1. Take in the letter that user types in
-    2. Pass it through the CheckLetter function
-    */
-    var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log("The Letter Guessed Is", letterGuessed);
-    checkLetters(letterGuessed);
-    roundComplete();
+        }
 
-};
+
+
+
+    };
+    startGame();
+
+    document.onkeydown = function () {
+        /*
+        1. Take in the letter that user types in
+        2. Pass it through the CheckLetter function
+        */
+        document.getElementById('audiotag3').play();
+        var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
+        console.log("The Letter Guessed Is", letterGuessed);
+        checkLetters(letterGuessed);
+        roundComplete();
+
+    };
 });
