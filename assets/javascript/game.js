@@ -35,7 +35,7 @@ var wordList = [ //Bands word list
     "ice cube",
     "a tribe called quest",
     "tupac",
-    "The notorious big"
+    "the notorious big"
 ];
 var chosenWord = ""; //when select word at random from bands
 
@@ -137,6 +137,8 @@ $(document).ready(function () {
             alert("You win! The answer was " + chosenWord);
             document.getElementById('win-counter').innerHTML = winCounter;
             document.getElementById('audiotag1').play();
+            document.getElementById('audiotag2').pause();
+            document.getElementById('audiotag2').load();
             startGame(); // If the letters chosen joined match the underscored random letters joined, increment winCounter, alert the user, play audio, and start a new game
 
         } else if (numGuesses === 0) {
@@ -144,6 +146,8 @@ $(document).ready(function () {
             document.getElementById('wrong-guesses').innerHTML = " ";
             alert("You lost! The answer was " + chosenWord);
             document.getElementById('audiotag2').play();
+            document.getElementById('audiotag1').pause();
+            document.getElementById('audiotag1').load();
             startGame(); // If the letters chosen do not match the underscored random letters, increment lossCounter, alert the user, play audio, and start a new game
 
         }
