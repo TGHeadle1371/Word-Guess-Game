@@ -50,7 +50,8 @@ Remember: The music, for now, does not give a hint to the word to guess, they ar
 
 Players have 10 total guesses to try to get the word. 
 
-![alt text](https://raw.githubusercontent.com/TGHeadle1371/Word-Guess-Game/assets/images/screenshot.png)
 
- 
+
+ ![Alt text](Word-Guess-Game/assets/images/screenshot.png?raw=true "Game Page")
+
       
