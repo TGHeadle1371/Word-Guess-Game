@@ -85,7 +85,7 @@ function startGame() {
 
 };
 
-function checkLetters(letter) { //function that gets input from the user
+function checkLetters(letter) { //function that gets input from the user / applied letter from child function
 
     var letterInWord = false;
     //1. Compare if the letter the user picks matches any of the letters in the random band word
