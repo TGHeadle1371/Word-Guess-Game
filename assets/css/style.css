@@ -2,10 +2,11 @@ body {
     align-items: center;
     background-image: url('https://cdn.hipwallpaper.com/i/31/79/YqUKl3.png');
     background-size: cover;
-    border: none;
+    border: none 0px;
     min-height: 100%;
     z-index: 1;
 }
+/* Fix bg-repeat line of bg img or bg img height itself */
 
 /* Styling for container, stretches background-image */
 .container-fluid {
