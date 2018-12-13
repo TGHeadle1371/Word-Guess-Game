@@ -1,23 +1,28 @@
 body {
     align-items: center;
+    background-image: url('https://cdn.hipwallpaper.com/i/31/79/YqUKl3.png');
+    background-size: cover;
+    border: none;
+    min-height: 100%;
+    z-index: 1;
 }
 
 /* Styling for container, stretches background-image */
 .container-fluid {
     background-position: center;
-    background-image: url('https://cdn.hipwallpaper.com/i/31/79/YqUKl3.png');
-    background-size: cover;
-    padding-bottom: 56.25%;
+    /* background-image: url('https://cdn.hipwallpaper.com/i/31/79/YqUKl3.png'); */
+    /* background-size: cover; */
+    /* padding-bottom: 56.25%; */
     align-items: center;
     max-width: 200%;
-    z-index: 1;
+    z-index: 2;
 
 }
 
 /* Positions jumbotron in the center */
 #jumbo {
      position: absolute;
-     top: 25%;
+     top: 20%;
      left:50%;
      transform: translate(-50%, -50%);
 }
@@ -42,28 +47,4 @@ body {
     /* These two lines are counted as one :-)       */
     display: flex;
     align-items: center;
-}
-
-/* Media Queries */
-// Extra small devices (portrait phones, less than 576px)
-// No media query since this is the default in Bootstrap
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-    ...
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-    ...
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-    ...
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-    ...
 }
