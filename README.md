@@ -58,7 +58,7 @@ Players have 10 total guesses to try to get the word.
 
 -   HTML5
 -   CSS3
--   [Boot Strap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
+-   [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
 -   jQuery
 -   JavaScript
 -   [PopperJS](https://popper.js.org/)
