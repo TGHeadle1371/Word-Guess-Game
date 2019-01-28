@@ -43,11 +43,22 @@ Word Guess Game
 4. Once all the guesses are correct, play the winning song and start another guess game.
 5. If all guesses are incorrect, play the losing song and start another guess game.
 
+```
 If the word is madonna, the display will show: \_ \_ \_ \_ \_ \_ _.
 As the user guesses the correct letters, it will be revealed to them as: m a d o _ \_ a.
+```
 
 Remember: The music, for now, does not give a hint to the word to guess, they are just songs.
 
 Players have 10 total guesses to try to get the word.
 
 ![Image of Webpage](/assets/images/screenshot.png?raw=true "Game Page")
+
+### Technology Used
+
+-   HTML5
+-   CSS3
+-   [Boot Strap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
+-   jQuery
+-   JavaScript
+-   [PopperJS](https://popper.js.org/)
