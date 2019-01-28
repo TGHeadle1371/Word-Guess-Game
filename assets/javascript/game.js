@@ -83,8 +83,8 @@ $(document).ready(function () {
         document.getElementById('word-blank').innerHTML = blanksAndSuccesses.join(" "); //Target innerHTML and join the spaces
         document.getElementById('guesses-left').innerHTML = numGuesses; //Added the numGuesses to guesses left paragraph
         document.getElementById('wrong-guesses').innerHTML = wrongGuesses.join(" "); //Add wrong guesses to wrong-guesses paragraph
- // USE jQuery Selector $()
-    };
+        // USE jQuery Selector $()
+    }
 
     function checkLetters(letter) { //function that gets input from the user / applied letter from child function
 
@@ -111,7 +111,7 @@ $(document).ready(function () {
             wrongGuesses.push(letter);
         }
         console.log("Wrong Guesses Chosen", wrongGuesses); //Console.log test wrongGuesses
-    };
+    }
     /* to check if a letter is already in the wrong guesses array.
      set up an if/else conditional that will run a for loop that will iterate over all the letters 
      and then use the if/else to check if it already exists. 
@@ -155,7 +155,7 @@ $(document).ready(function () {
 
 
 
-    };
+    }
     startGame();
 
     document.onkeyup = function () {
@@ -163,7 +163,7 @@ $(document).ready(function () {
         1. Take in the letter that user types in
         2. Pass it through the CheckLetter function
         */
-        
+
         var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
         console.log("The Letter Guessed Is", letterGuessed);
         document.getElementById('audiotag3').play();

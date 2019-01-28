@@ -1,5 +1,6 @@
 # Word-Guess-Game
-Homework 3
+
+-   Homework 3 DU Bootcamp
 
 <!-- Pseudocode
 90's theme Word-Guessing-Game
@@ -14,7 +15,7 @@ automatically choose another word to begin another game.
 Bonus
 Play a sound when word is correct
 Write stylish CSS to fit theme
-HARD MODE: Organize game code as an object, except key events, to guess letter. 
+HARD MODE: Organize game code as an object, except key events, to guess letter.
 Save whole game and its properties in an object.
 Save any of the game functions as a method and call them underneath object declaration using event listener.
 Global Variables, Objects, Calls
@@ -31,27 +32,22 @@ Keep guessing letters, filling in, till bandNameWords selection.length is comple
 If user selection does not match, add letter to letters guessed and remove from available letters.
 
 The user then presses r, p, or s to play again. -->
-Word Guess Game 
+
+Word Guess Game
 
 90's Hip-hop artist themed guesses
 
-1. To begin, press any key! Remember, the SPACE bar is considered a character for your guesses as well.
+1. To begin, press any key! Remember, the SPACEBAR is considered a character for your guesses as well.
 2. If the player guesses right, that letter will be added to the underscores and will not deduct guessesleft.
 3. If the player guesses wrong, the letter will be added to the array of wrong guess letters and 1 guess will be decremented.
 4. Once all the guesses are correct, play the winning song and start another guess game.
 5. If all guesses are incorrect, play the losing song and start another guess game.
 
-
-If the word is madonna, the display will show: _ _ _ _ _ _ _.
-As the user guesses the correct letters, it will be revealed to them as: m a d o _  _ a.
+If the word is madonna, the display will show: \_ \_ \_ \_ \_ \_ _.
+As the user guesses the correct letters, it will be revealed to them as: m a d o _ \_ a.
 
 Remember: The music, for now, does not give a hint to the word to guess, they are just songs.
 
+Players have 10 total guesses to try to get the word.
 
-Players have 10 total guesses to try to get the word. 
-
-
-
- ![Image of Webpage](/assets/images/screenshot.png?raw=true "Game Page")
-
-      
+![Image of Webpage](/assets/images/screenshot.png?raw=true "Game Page")
